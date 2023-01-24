@@ -1,8 +1,6 @@
 import edu.princeton.cs.algs4.StdIn;
 
-/** Simple Arithmetic Class.
- * @author Josh Hug
- * */
+/** Simple Arithmetic Class.* */
 public class Arithmetic {
 
     /** Computes product of two ints.
@@ -20,7 +18,7 @@ public class Arithmetic {
      * @return Sum of a and b
      * */
     public static int sum(int a, int b) {
-        return a * b;
+        return a + b;
     }
 
     public static void main(String[] args) {
