@@ -8,7 +8,7 @@ import aoa.utils.FileUtils;
 
 public class EvilChooser implements Chooser {
     private String pattern;
-    private List<String> wordPool;
+    private List<String> wordPool = new ArrayList<>();
     private final List<String> words;
 
     public EvilChooser(int wordLength, String dictionaryFile) {
@@ -33,26 +33,44 @@ public class EvilChooser implements Chooser {
     @Override
     public int makeGuess(char letter) {
         TreeMap<String, List> patterned = new TreeMap<>();
-        List<String> arn = new ArrayList<>();
         for (String word: wordPool){
+            List<String> arn = new ArrayList<>();
             String birds = "";
             for(int i = 0; i<word.length(); i++){
                 if (word.charAt(i)==letter){
                     birds = birds + letter;
                 }
-                else if(pattern.charAt(i)!='-'){
+                else{
                     birds = birds + pattern.charAt(i);
                 }
             }
             if (patterned.containsKey(birds)){
-                List<String> arn = patterned.get(birds);
-                arn.add(birds)
-                patterned.put(birds, patterned.get(birds));
+                arn = patterned.get(birds);
+                arn.add(word);
+                patterned.put(birds, arn);
             }
             else{
-                patterned.put(birds, )
+                arn.add(word);
+                patterned.put(birds, arn);
             }
         }
+        String curS = "";
+        int curLargest = 0;
+        for(String start: patterned.keySet()) {
+            if (patterned.get(start).size() > curLargest) {
+                wordPool = patterned.get(start);
+                curLargest = patterned.get(start).size();
+                pattern = start;
+            }
+        }
+        String chr = wordPool.get(0);
+        int count = 0;
+        for (int i = 0; i<chr.length(); i++){
+            if (chr.charAt(i)==letter){
+                count+=1;
+            }
+        }
+        return count;
     }
 
     @Override
