@@ -131,6 +131,7 @@ public class LinkedListDequeTest {
         assertThat(lld1.removeLast()).isEqualTo(1);
         assertThat(lld1.toList()).containsExactly(1, 2).inOrder();
     }
+    @Test
     public void testRand() {
          Deque<Integer> lld1 = new LinkedListDeque<>();
         assertThat(lld1.removeFirst()).isEqualTo(null);
@@ -146,6 +147,7 @@ public class LinkedListDequeTest {
          lld1.addFirst(1);
          assertThat(lld1.toList()).containsExactly(1).inOrder();
     }
+    @Test
     public void testRand2() {
         Deque<Integer> lld1 = new LinkedListDeque<>();
         assertThat(lld1.removeLast()).isEqualTo(null);
