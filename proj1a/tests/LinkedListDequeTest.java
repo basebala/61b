@@ -73,6 +73,11 @@ public class LinkedListDequeTest {
     // Below, you'll write your own tests for LinkedListDeque.
 
     @Test
+    public void testListEmpty() {
+        Deque<Integer> lld1 = new LinkedListDeque<>();
+        assertThat(lld1.toList()).containsExactly().inOrder();
+    }
+    @Test
     public void testEmptiness() {
         Deque<Integer> lld1 = new LinkedListDeque<>();
 
@@ -109,6 +114,7 @@ public class LinkedListDequeTest {
     public void testRemoveFirst() {
         Deque<Integer> lld1 = new LinkedListDeque<>();
         assertThat(lld1.removeFirst()).isEqualTo(null);
+        assertThat(lld1.size()).isEqualTo(0);
         lld1.addLast(2);
         lld1.addFirst(1);
         lld1.addFirst(2);
@@ -124,5 +130,31 @@ public class LinkedListDequeTest {
         lld1.addFirst(1);
         assertThat(lld1.removeLast()).isEqualTo(1);
         assertThat(lld1.toList()).containsExactly(1, 2).inOrder();
+    }
+    public void testRand() {
+         Deque<Integer> lld1 = new LinkedListDeque<>();
+         lld1.addFirst(1);
+         lld1.addFirst(2);
+         lld1.addFirst(2);
+         lld1.removeFirst();
+         lld1.removeFirst();
+         assertThat(lld1.toList()).containsExactly(1).inOrder();
+         lld1.removeFirst();
+         assertThat(lld1.size()).isEqualTo(0);
+         lld1.addLast(1);
+         assertThat(lld1.toList()).containsExactly(1).inOrder();
+    }
+    public void testRand2() {
+        Deque<Integer> lld1 = new LinkedListDeque<>();
+        lld1.addFirst(1);
+        lld1.addFirst(2);
+        lld1.addFirst(2);
+        lld1.removeLast();
+        lld1.removeLast();
+        assertThat(lld1.toList()).containsExactly(2).inOrder();
+        lld1.removeLast();
+        assertThat(lld1.size()).isEqualTo(0);
+        lld1.addFirst(1);
+        assertThat(lld1.toList()).containsExactly(1).inOrder();
     }
 }

@@ -3,10 +3,14 @@ import java.util.ArrayList;
 
 public class LinkedListDeque<T> implements Deque<T> {
     private Node sentinel;
+    private int size;
     public static void main(String[] args) {
         Deque<Integer> lld = new LinkedListDeque<>();
         lld.addFirst(1);
         lld.addLast(2);
+        lld.addLast(2);
+        lld.removeFirst();
+        lld.removeLast();
     }
     class Node {
         private Node prev;
@@ -25,18 +29,21 @@ public class LinkedListDeque<T> implements Deque<T> {
         this.sentinel = new Node(null, null, null);
         this.sentinel.prev = this.sentinel;
         this.sentinel.next = this.sentinel;
+        this.size = 0;
     }
 
     @Override
     public void addFirst(T x) {
         this.sentinel.next.prev = new Node(x, this.sentinel, this.sentinel.next);
         this.sentinel.next = this.sentinel.next.prev;
+        this.size += 1;
     }
 
     @Override
     public void addLast(T x) {
         this.sentinel.prev.next = new Node(x, this.sentinel.prev, this.sentinel);
         this.sentinel.prev = this.sentinel.prev.next;
+        this.size += 1;
     }
 
     @Override
@@ -53,42 +60,35 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public boolean isEmpty() {
-        if (this.sentinel.next == this.sentinel) {
-            return true;
-        }
-        return false;
+        return size == 0;
     }
 
     @Override
     public int size() {
-        int count = 0;
-        Node curElement = this.sentinel;
-        while (curElement.next != this.sentinel) {
-            curElement = curElement.next;
-            count += 1;
-        }
-        return count;
+        return size;
     }
 
     @Override
     public T removeFirst() {
-        if (this.sentinel.next == this.sentinel) {
+        if (this.size == 0) {
             return null;
         }
         T toBeReturned = this.sentinel.next.value;
         this.sentinel.next = this.sentinel.next.next;
         this.sentinel.next.prev = this.sentinel;
+        this.size -= 1;
         return toBeReturned;
     }
 
     @Override
     public T removeLast() {
-        if (this.sentinel.next == this.sentinel) {
+        if (this.size == 0) {
             return null;
         }
         T toBeReturned = this.sentinel.prev.value;
         this.sentinel.prev = this.sentinel.prev.prev;
         this.sentinel.prev.next = this.sentinel;
+        this.size -= 1;
         return toBeReturned;
     }
 
@@ -105,11 +105,9 @@ public class LinkedListDeque<T> implements Deque<T> {
         }
         if (curElement == this.sentinel) {
             return null;
-        }
-        else if (curIndex < 0) {
+        } else if (curIndex < 0) {
             return null;
-        }
-        else {
+        } else {
             return curElement.value;
         }
     }
@@ -119,8 +117,7 @@ public class LinkedListDeque<T> implements Deque<T> {
         }
         if (curIndex == 0) {
             return curNode.value;
-        }
-        else {
+        } else {
             return recursiveHelper(curNode.next, curIndex - 1);
         }
 
