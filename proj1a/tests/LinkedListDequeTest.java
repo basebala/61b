@@ -77,52 +77,52 @@ public class LinkedListDequeTest {
         Deque<Integer> lld1 = new LinkedListDeque<>();
 
         assertThat(lld1.isEmpty()).isEqualTo(true);
-        lld1.addFirst(5);
+        lld1.addFirst(2);
         assertThat(lld1.isEmpty()).isEqualTo(false);
     }
     @Test
-    public void testSize(){
+    public void testSize() {
         Deque<Integer> lld1 = new LinkedListDeque<>();
         assertThat(lld1.size()).isEqualTo(0);
-        lld1.addLast(5);
+        lld1.addLast(2);
         assertThat(lld1.size()).isEqualTo(1);
     }
     @Test
-    public void testGet(){
+    public void testGet() {
         Deque<Integer> lld1 = new LinkedListDeque<>();
         assertThat(lld1.get(0)).isEqualTo(null);
-        lld1.addLast(5);
-        assertThat(lld1.get(0)).isEqualTo(5);
+        lld1.addLast(2);
+        assertThat(lld1.get(0)).isEqualTo(2);
         assertThat(lld1.get(2)).isEqualTo(null);
         assertThat(lld1.get(-1)).isEqualTo(null);
     }
     @Test
-    public void testGetRecursive(){
+    public void testGetRecursive() {
         Deque<Integer> lld1 = new LinkedListDeque<>();
         assertThat(lld1.getRecursive(0)).isEqualTo(null);
-        lld1.addLast(5);
-        assertThat(lld1.getRecursive(0)).isEqualTo(5);
+        lld1.addLast(2);
+        assertThat(lld1.getRecursive(0)).isEqualTo(2);
         assertThat(lld1.getRecursive(2)).isEqualTo(null);
         assertThat(lld1.getRecursive(-1)).isEqualTo(null);
     }
     @Test
-    public void TestRemoveFirst(){
+    public void testRemoveFirst() {
         Deque<Integer> lld1 = new LinkedListDeque<>();
         assertThat(lld1.removeFirst()).isEqualTo(null);
-        lld1.addLast(5);
-        lld1.addFirst(4);
-        lld1.addFirst(6);
-        assertThat(lld1.removeFirst()).isEqualTo(6);
-        assertThat(lld1.toList()).containsExactly(4, 5).inOrder();
+        lld1.addLast(2);
+        lld1.addFirst(1);
+        lld1.addFirst(2);
+        assertThat(lld1.removeFirst()).isEqualTo(2);
+        assertThat(lld1.toList()).containsExactly(1, 2).inOrder();
     }
     @Test
-    public void TestRemoveLast(){
+    public void testRemoveLast() {
         Deque<Integer> lld1 = new LinkedListDeque<>();
         assertThat(lld1.removeLast()).isEqualTo(null);
-        lld1.addLast(5);
-        lld1.addFirst(4);
-        lld1.addFirst(6);
-        assertThat(lld1.removeLast()).isEqualTo(5);
-        assertThat(lld1.toList()).containsExactly(6, 4).inOrder();
+        lld1.addLast(1);
+        lld1.addFirst(2);
+        lld1.addFirst(1);
+        assertThat(lld1.removeLast()).isEqualTo(1);
+        assertThat(lld1.toList()).containsExactly(1, 2).inOrder();
     }
 }
