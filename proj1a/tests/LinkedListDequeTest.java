@@ -133,13 +133,14 @@ public class LinkedListDequeTest {
     }
     public void testRand() {
          Deque<Integer> lld1 = new LinkedListDeque<>();
+        assertThat(lld1.removeFirst()).isEqualTo(null);
          lld1.addFirst(1);
-         lld1.addFirst(2);
+         lld1.addLast(2);
          lld1.addFirst(2);
         for (int i = 0; i < 2; i++) {
             lld1.removeFirst();
         }
-         assertThat(lld1.toList()).containsExactly(1).inOrder();
+         assertThat(lld1.toList()).containsExactly(2).inOrder();
          lld1.removeFirst();
          assertThat(lld1.toList()).isEmpty();
          lld1.addFirst(1);
@@ -147,8 +148,9 @@ public class LinkedListDequeTest {
     }
     public void testRand2() {
         Deque<Integer> lld1 = new LinkedListDeque<>();
+        assertThat(lld1.removeLast()).isEqualTo(null);
         lld1.addFirst(1);
-        lld1.addFirst(2);
+        lld1.addLast(2);
         lld1.addFirst(2);
         for (int i = 0; i < 2; i++) {
             lld1.removeLast();
