@@ -49,7 +49,7 @@ public class ArrayDeque<T> implements Deque<T> {
             backingArray[size] = x;
             backIndex = size;
         } else {
-            if (backIndex == backingArray.length) {
+            if (backIndex == backingArray.length-1) {
                 backIndex = 0;
             } else {
                 backIndex = backIndex + 1;

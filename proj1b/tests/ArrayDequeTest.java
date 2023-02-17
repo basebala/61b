@@ -114,4 +114,21 @@ public class ArrayDequeTest {
         lld1.addFirst(1);
         assertThat(lld1.toList()).containsExactly(1).inOrder();
     }
+    @Test
+    public void testTriggering() {
+        Deque<Integer> lld1 = new ArrayDeque<>();
+        for(int i = 0; i < 9; i++) {
+            lld1.addLast(5);
+        }
+        assertThat(lld1.get(8) == 5);
+        for(int i = 0; i<6; i++){
+            lld1.removeLast();
+        }
+        assertThat(lld1.get(2) == 5);
+        for(int i = 0; i<3; i++){
+            lld1.removeLast();
+        }
+        lld1.addLast(2);
+        assertThat(!lld1.isEmpty());
+    }
 }
