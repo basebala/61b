@@ -7,6 +7,8 @@ public class ArrayDeque<T> implements Deque<T> {
     private static final int INITIAL_SIZE = 8;
     private static final int RESIZE_FACTOR = 4;
 
+    private static final int VIABLE_SIZE = 16;
+
     public static void main(String[] args) {
 
     }
@@ -97,7 +99,7 @@ public class ArrayDeque<T> implements Deque<T> {
             frontIndex = 0;
         }
         size = size - 1;
-        if (size < backingArray.length / RESIZE_FACTOR) {
+        if (size < backingArray.length / RESIZE_FACTOR && backingArray.length >= VIABLE_SIZE) {
             resize(backingArray.length / 2);
         }
         return temp;
@@ -115,7 +117,7 @@ public class ArrayDeque<T> implements Deque<T> {
             backIndex = backingArray.length - 1;
         }
         size = size - 1;
-        if (size < backingArray.length / RESIZE_FACTOR) {
+        if (size < backingArray.length / RESIZE_FACTOR && backingArray.length >= VIABLE_SIZE) {
             resize(backingArray.length / 2);
         }
         return temp;
