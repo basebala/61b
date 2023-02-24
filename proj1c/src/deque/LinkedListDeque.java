@@ -139,18 +139,18 @@ public class LinkedListDeque<T> implements Deque<T> {
     }
 
     @Override
-    public boolean equals(Object other){
-        if(other instanceof LinkedListDeque uddaDeque){
-            if(uddaDeque.size()!=this.size()){
+    public boolean equals(Object other) {
+        if (other instanceof Deque uddaDeque) {
+            if (uddaDeque.size() != this.size()) {
                 return false;
             }
-            if (this.size()==0){
+            if (this.size() == 0) {
                 return true;
             }
             List<T> uddaToList = uddaDeque.toList();
             Node curNode = this.sentinel.next;
-            for(T x: uddaToList){
-                if (curNode.value!=x){
+            for (T x: uddaToList) {
+                if (!curNode.value.equals(x)) {
                     return false;
                 }
                 curNode = curNode.next;
@@ -162,7 +162,7 @@ public class LinkedListDeque<T> implements Deque<T> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.toList().toString();
     }
 

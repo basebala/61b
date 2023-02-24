@@ -13,14 +13,6 @@ public class ArrayDeque<T> implements Deque<T> {
     private static final int VIABLE_SIZE = 16;
 
     public static void main(String[] args) {
-        Deque<Integer> lld = new ArrayDeque<>();
-        lld.addFirst(2);
-        lld.addFirst(3);
-        Deque<Integer> lld1 = new ArrayDeque<>();
-        lld1.addLast(2);
-        lld1.addFirst(3);
-        System.out.println(lld.equals(lld1));
-        System.out.println(lld1.toString());
 
     }
     private T[] backingArray;
@@ -172,18 +164,18 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     @Override
-    public boolean equals(Object other){
-        if(other instanceof ArrayDeque uddaDeque){
-            if(uddaDeque.size()!=this.size()){
+    public boolean equals(Object other) {
+        if (other instanceof Deque uddaDeque) {
+            if (uddaDeque.size() != this.size()) {
                 return false;
             }
-            if (this.size()==0){
+            if (this.size() == 0) {
                 return true;
             }
             List<T> uddaToList = uddaDeque.toList();
             int curIndex = frontIndex;
-            for(T x: uddaToList){
-                if (backingArray[curIndex]!=x){
+            for (T x: uddaToList) {
+                if (!backingArray[curIndex].equals(x)) {
                     return false;
                 }
                 curIndex = (curIndex + 1) % backingArray.length;
@@ -195,17 +187,21 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.toList().toString();
     }
 
     private class ArrayDequeIterator implements Iterator<T> {
         private int wizPos;
-        public ArrayDequeIterator() { wizPos = frontIndex - 1; }
-        public boolean hasNext() { return size > 0 && wizPos!=(frontIndex+size-1); }
+        public ArrayDequeIterator() {
+            wizPos = frontIndex - 1;
+        }
+        public boolean hasNext() {
+            return size > 0 && wizPos != (frontIndex + size - 1);
+        }
         public T next() {
             T returnItem = backingArray[(wizPos + 1) % backingArray.length];
-            wizPos +=1;
+            wizPos += 1;
             return returnItem;
         }
     }
