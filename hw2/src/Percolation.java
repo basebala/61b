@@ -30,7 +30,7 @@ public class Percolation {
         if (row < 0 || row >= gridWidth || col < 0 || col >= gridWidth) {
             throw new IndexOutOfBoundsException();
         }
-        if(open[row * gridWidth + col] == false){
+        if (!isOpen(row, col)) {
             openCount += 1;
             open[row * gridWidth + col] = true;
             if (row == 0) {
