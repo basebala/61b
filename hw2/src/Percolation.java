@@ -30,39 +30,42 @@ public class Percolation {
         if (row < 0 || row >= gridWidth || col < 0 || col >= gridWidth) {
             throw new IndexOutOfBoundsException();
         }
-        open[row * gridWidth + col] = true;
-        openCount += 1;
-        if (row == 0) {
-            myUnion.union(row * gridWidth + col, open.length);
-        } else if (row == gridWidth - 1) {
-            myUnion2.union(row * gridWidth + col, open.length);
-        }
-        if (row > 0) {
-            if (isOpen(row - 1, col)) {
-                myUnion.union(row * gridWidth + col, (row - 1) * gridWidth + col);
-                myUnion2.union(row * gridWidth + col, (row - 1) * gridWidth + col);
+        if(open[row * gridWidth + col] == false){
+            openCount += 1;
+            open[row * gridWidth + col] = true;
+            if (row == 0) {
+                myUnion.union(row * gridWidth + col, open.length);
             }
-        }
-        if (row < gridWidth - 1) {
-            if (isOpen(row + 1, col)) {
-                myUnion.union(row * gridWidth + col, (row + 1) * gridWidth + col);
-                myUnion2.union(row * gridWidth + col, (row + 1) * gridWidth + col);
+            if (row == gridWidth - 1) {
+                myUnion2.union(row * gridWidth + col, open.length);
             }
-        }
-        if (col > 0) {
-            if (isOpen(row, col - 1)) {
-                myUnion.union(row * gridWidth + col, row * gridWidth + col - 1);
-                myUnion2.union(row * gridWidth + col, row * gridWidth + col - 1);
+            if (row > 0) {
+                if (isOpen(row - 1, col)) {
+                    myUnion.union(row * gridWidth + col, (row - 1) * gridWidth + col);
+                    myUnion2.union(row * gridWidth + col, (row - 1) * gridWidth + col);
+                }
             }
-        }
-        if (col < gridWidth - 1) {
-            if (isOpen(row, col + 1)) {
-                myUnion.union(row * gridWidth + col, row * gridWidth + col + 1);
-                myUnion2.union(row * gridWidth + col, row * gridWidth + col + 1);
+            if (row < gridWidth - 1) {
+                if (isOpen(row + 1, col)) {
+                    myUnion.union(row * gridWidth + col, (row + 1) * gridWidth + col);
+                    myUnion2.union(row * gridWidth + col, (row + 1) * gridWidth + col);
+                }
             }
-        }
-        if (isFull(row, col) && isFull2(row, col)) {
-            percolator = true;
+            if (col > 0) {
+                if (isOpen(row, col - 1)) {
+                    myUnion.union(row * gridWidth + col, row * gridWidth + col - 1);
+                    myUnion2.union(row * gridWidth + col, row * gridWidth + col - 1);
+                }
+            }
+            if (col < gridWidth - 1) {
+                if (isOpen(row, col + 1)) {
+                    myUnion.union(row * gridWidth + col, row * gridWidth + col + 1);
+                    myUnion2.union(row * gridWidth + col, row * gridWidth + col + 1);
+                }
+            }
+            if (isFull(row, col) && isFull2(row, col)) {
+                percolator = true;
+            }
         }
     }
 
