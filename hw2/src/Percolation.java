@@ -25,10 +25,6 @@ public class Percolation {
         for(int i = 0; i<N*N; i++){
             open[i] = false;
         }
-        for(int i = 0; i<gridWidth; i++){
-            myUnion.union(i, open.length);
-            myUnion2.union(gridWidth * (gridWidth - 1) + i, open.length);
-        }
     }
 
     public void open(int row, int col) {
@@ -69,6 +65,12 @@ public class Percolation {
     public boolean isOpen(int row, int col) {
         if (row < 0 || row >= gridWidth || col < 0 || col >= gridWidth){
             throw new IndexOutOfBoundsException();
+        }
+        if(row == 0){
+            myUnion.union(row * gridWidth + col, open.length);
+        }
+        else if(row == gridWidth - 1){
+            myUnion2.union(row * gridWidth + col, open.length);
         }
         return open[row * gridWidth + col];
     }
