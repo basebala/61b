@@ -4,15 +4,15 @@ ArrayDeque:
 
 Q: Give an example of at least one idea from the staff solution that would have made your solution better (if any).
 
-A: 
+A:
 
 Q: What's something you felt proud of in your code, if anything?
 
-A:
+A: I was proud of my get() method since I thought it was a very simple solution and didn't take up too many lines.
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A: I felt that the code for my resize() method was long and somewhat inelegant since it individually copied each element to the new array.
 
 Q: What did you learn by talking to your partner about writing ArrayDeque?
 
@@ -20,11 +20,11 @@ A:
 
 Q: What do you wish you would have known before writing ArrayDeque, if anything?
 
-A:
+A: I wish I would've known a better way to keep a track of which elements are at the front and the back of the deque.
 
 Q: If you wrote ArrayDeque again, what would you do differently, if anything?
 
-A:
+A: I'd try to refine my resizing code since I felt that it took up many lines in an unnecessary fashion and I could simplify it.
 
 -----
 
@@ -36,11 +36,11 @@ A:
 
 Q: What's something you felt proud of in your code, if anything?
 
-A:
+A: I was proud of how my code was able to cleanly add elements without the need for many lines.
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A: I thought that the get() method I wrote had many lines and a somewhat inelegant implementation that could have potentially been simplified.
 
 Q: What did you learn by talking to your partner about writing LinkedListDeque?
 
@@ -48,11 +48,11 @@ A:
 
 Q: What do you wish you would have known before writing LinkedListDeque, if anything?
 
-A:
+A: I wish I would've known other approaches for the LinkedListDeque, so I could potentially try other ways to implement the methods.
 
 Q: If you wrote LinkedListDeque again, what would you do differently, if anything?
 
-A:
+A: If I were to write LinkedListDeque again, I'd most likely try to refine my get() method since it was somewhat inelegant and I could try and simplify it.
 
 -----
 
@@ -60,4 +60,4 @@ Meta:
 
 Q: Did you like this design review process? Anything we should do differently next time?
 
-A: 
+A: I thought it was a good process, it could potentially have a slightly greater emphasis on the number of lines of code (for fun, not a grade) just to see how to make the code as simple as possible.
