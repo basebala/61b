@@ -1,0 +1,24 @@
+Ran InsertRandomSpeedTest on strings of length 100 for a varying number of strings.
+
+For 100 strings, all four tests completed the insertions within 0.00 sec.
+
+For 1000 strings, ULLMap took 0.01 sec, the other three tests took 0.00 sec.
+
+For 10000 strings, ULLMap took 0.52 sec, the other three tests took 0.02 sec.
+
+For 100000 strings, ULLMap had an error, BSTMap took 0.22 sec, TreeMap took 0.20 sec, HashMap took 0.16 sec.
+
+For 1000000 strings, ULLMap had an error, BSTMap took 2.74 sec, TreeMap took 2.47 sec, HashMap took 1.69 sec.
+
+
+
+Ran InsertInOrderSpeedTests for a varying number of strings.
+
+For 100 strings, ULLMap took 0.01 sec, the other three tests took 0.00 sec.
+
+For 1000 strings, ULLMap and BSTMap took 0.02 sec, the other two tests took 0.00 sec.
+
+For 10000 strings, ULLMap took 1.46 sec, BSTMap took 1.46 sec, the other two tests took 0.01 sec.
+
+For 100000 strings, ULLMap and BSTMap had an error, TreeMap took 0.09 sec, HashMap took 0.03 sec.
+
