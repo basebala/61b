@@ -1,6 +1,9 @@
 package ngordnet.ngrams;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.HashMap;
+import edu.princeton.cs.algs4.In;
 
 /**
  * An object that provides utility methods for making queries on the
@@ -16,13 +19,37 @@ public class NGramMap {
 
     private static final int MIN_YEAR = 1400;
     private static final int MAX_YEAR = 2100;
-    // TODO: Add any necessary static/instance variables.
+    private Map<String, TimeSeries> myMap;
+    private TimeSeries myTime;
 
     /**
      * Constructs an NGramMap from WORDSFILENAME and COUNTSFILENAME.
      */
     public NGramMap(String wordsFilename, String countsFilename) {
-        // TODO: Fill in this constructor. See the "NGramMap Tips" section of the spec for help.
+        myMap = new HashMap<String, TimeSeries>();
+        myTime = new TimeSeries();
+        In myIn = new In(wordsFilename);
+        In myIn2 = new In(countsFilename);
+        while (myIn.hasNextLine() && !myIn.isEmpty()){
+            String curString = myIn.readString();
+            int curYear = myIn.readInt();
+            int curCount = myIn.readInt();
+            int curSrc = myIn.readInt();
+            place(curString, curYear, curCount);
+        }
+        while (myIn2.hasNextLine() && !myIn2.isEmpty()){
+            String curString = myIn2.readLine();
+            String [] myStrings = curString.split(",");
+            int curYear = Integer.parseInt(myStrings[0]);
+            double curCount = Double.parseDouble(myStrings[1]);
+            myTime.put(curYear, curCount);
+        }
+    }
+    private void place (String word, int year, double count){
+        if (!myMap.containsKey(word)){
+            myMap.put(word, new TimeSeries());
+        }
+        myMap.get(word).put(year, count);
     }
 
     /**
@@ -32,8 +59,7 @@ public class NGramMap {
      * NGramMap. This is also known as a "defensive copy".
      */
     public TimeSeries countHistory(String word, int startYear, int endYear) {
-        // TODO: Fill in this method.
-        return null;
+        return new TimeSeries(myMap.get(word), startYear, endYear);
     }
 
     /**
@@ -43,16 +69,14 @@ public class NGramMap {
      * NGramMap. This is also known as a "defensive copy".
      */
     public TimeSeries countHistory(String word) {
-        // TODO: Fill in this method.
-        return null;
+        return new TimeSeries(myMap.get(word), MIN_YEAR, MAX_YEAR);
     }
 
     /**
      * Returns a defensive copy of the total number of words recorded per year in all volumes.
      */
     public TimeSeries totalCountHistory() {
-        // TODO: Fill in this method.
-        return null;
+        return new TimeSeries(myTime, MIN_YEAR, MAX_YEAR);
     }
 
     /**
@@ -60,8 +84,7 @@ public class NGramMap {
      * and ENDYEAR, inclusive of both ends.
      */
     public TimeSeries weightHistory(String word, int startYear, int endYear) {
-        // TODO: Fill in this method.
-        return null;
+        return countHistory(word, startYear, endYear).dividedBy(myTime);
     }
 
     /**
@@ -70,8 +93,7 @@ public class NGramMap {
      * TimeSeries.
      */
     public TimeSeries weightHistory(String word) {
-        // TODO: Fill in this method.
-        return null;
+        return countHistory(word).dividedBy(myTime);
     }
 
     /**
@@ -81,16 +103,18 @@ public class NGramMap {
      */
     public TimeSeries summedWeightHistory(Collection<String> words,
                                           int startYear, int endYear) {
-        // TODO: Fill in this method.
-        return null;
+        TimeSeries mySum = new TimeSeries();
+        for (String word: words){
+            mySum = mySum.plus(weightHistory(word, startYear, endYear));
+        }
+        return mySum;
     }
 
     /**
      * Returns the summed relative frequency per year of all words in WORDS.
      */
     public TimeSeries summedWeightHistory(Collection<String> words) {
-        // TODO: Fill in this method.
-        return null;
+        return summedWeightHistory(words, MIN_YEAR, MAX_YEAR);
     }
 
     // TODO: Add any private helper methods.
