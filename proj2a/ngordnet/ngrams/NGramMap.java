@@ -1,7 +1,6 @@
 package ngordnet.ngrams;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.HashMap;
 import edu.princeton.cs.algs4.In;
 
@@ -19,34 +18,34 @@ public class NGramMap {
 
     private static final int MIN_YEAR = 1400;
     private static final int MAX_YEAR = 2100;
-    private Map<String, TimeSeries> myMap;
+    private HashMap<String, TimeSeries> myMap;
     private TimeSeries myTime;
 
     /**
      * Constructs an NGramMap from WORDSFILENAME and COUNTSFILENAME.
      */
     public NGramMap(String wordsFilename, String countsFilename) {
-        myMap = new HashMap<String, TimeSeries>();
+        myMap = new HashMap<>();
         myTime = new TimeSeries();
         In myIn = new In(wordsFilename);
         In myIn2 = new In(countsFilename);
-        while (myIn.hasNextLine() && !myIn.isEmpty()){
+        while (myIn.hasNextLine() && !myIn.isEmpty()) {
             String curString = myIn.readString();
             int curYear = myIn.readInt();
             int curCount = myIn.readInt();
             int curSrc = myIn.readInt();
             place(curString, curYear, curCount);
         }
-        while (myIn2.hasNextLine() && !myIn2.isEmpty()){
+        while (myIn2.hasNextLine() && !myIn2.isEmpty()) {
             String curString = myIn2.readLine();
-            String [] myStrings = curString.split(",");
+            String[] myStrings = curString.split(",");
             int curYear = Integer.parseInt(myStrings[0]);
             double curCount = Double.parseDouble(myStrings[1]);
             myTime.put(curYear, curCount);
         }
     }
-    private void place (String word, int year, double count){
-        if (!myMap.containsKey(word)){
+    private void place(String word, int year, double count) {
+        if (!myMap.containsKey(word)) {
             myMap.put(word, new TimeSeries());
         }
         myMap.get(word).put(year, count);
@@ -59,6 +58,9 @@ public class NGramMap {
      * NGramMap. This is also known as a "defensive copy".
      */
     public TimeSeries countHistory(String word, int startYear, int endYear) {
+        if (!myMap.containsKey(word)) {
+            return new TimeSeries();
+        }
         return new TimeSeries(myMap.get(word), startYear, endYear);
     }
 
@@ -69,6 +71,9 @@ public class NGramMap {
      * NGramMap. This is also known as a "defensive copy".
      */
     public TimeSeries countHistory(String word) {
+        if (!myMap.containsKey(word)) {
+            return new TimeSeries();
+        }
         return new TimeSeries(myMap.get(word), MIN_YEAR, MAX_YEAR);
     }
 
@@ -104,7 +109,7 @@ public class NGramMap {
     public TimeSeries summedWeightHistory(Collection<String> words,
                                           int startYear, int endYear) {
         TimeSeries mySum = new TimeSeries();
-        for (String word: words){
+        for (String word: words) {
             mySum = mySum.plus(weightHistory(word, startYear, endYear));
         }
         return mySum;
@@ -117,6 +122,4 @@ public class NGramMap {
         return summedWeightHistory(words, MIN_YEAR, MAX_YEAR);
     }
 
-    // TODO: Add any private helper methods.
-    // TODO: Remove all TODO comments before submitting.
 }

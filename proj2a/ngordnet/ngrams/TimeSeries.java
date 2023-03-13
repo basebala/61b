@@ -15,7 +15,6 @@ public class TimeSeries extends TreeMap<Integer, Double> {
 
     private static final int MIN_YEAR = 1400;
     private static final int MAX_YEAR = 2100;
-    // TODO: Add any necessary static/instance variables.
 
     /**
      * Constructs a new empty TimeSeries.
@@ -30,8 +29,8 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
         super();
-        for (Map.Entry<Integer, Double> i: ts.entrySet()){
-            if (i.getKey()>=startYear && i.getKey()<=endYear){
+        for (Map.Entry<Integer, Double> i: ts.entrySet()) {
+            if (i.getKey() >= startYear && i.getKey() <= endYear) {
                 this.put(i.getKey(), i.getValue());
             }
         }
@@ -42,7 +41,7 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Integer> years() {
         List<Integer> yearsReturn = new ArrayList<>();
-        for (Map.Entry<Integer, Double> i: this.entrySet()){
+        for (Map.Entry<Integer, Double> i: this.entrySet()) {
             yearsReturn.add(i.getKey());
         }
         return yearsReturn;
@@ -54,7 +53,7 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Double> data() {
         List<Double> valReturn = new ArrayList<>();
-        for (Map.Entry<Integer, Double> i: this.entrySet()){
+        for (Map.Entry<Integer, Double> i: this.entrySet()) {
             valReturn.add(i.getValue());
         }
         return valReturn;
@@ -71,16 +70,15 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries plus(TimeSeries ts) {
         TimeSeries myRet = new TimeSeries();
-        for (Map.Entry<Integer, Double> i: this.entrySet()){
-            if(ts.containsKey(i.getKey())){
+        for (Map.Entry<Integer, Double> i: this.entrySet()) {
+            if (ts.containsKey(i.getKey())) {
                 myRet.put(i.getKey(), i.getValue() + ts.get(i.getKey()));
-            }
-            else{
+            } else {
                 myRet.put(i.getKey(), i.getValue());
             }
         }
-        for (Map.Entry<Integer, Double> i: ts.entrySet()){
-            if (!this.containsKey(i.getKey())){
+        for (Map.Entry<Integer, Double> i: ts.entrySet()) {
+            if (!this.containsKey(i.getKey())) {
                 myRet.put(i.getKey(), i.getValue());
             }
         }
@@ -98,17 +96,13 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries dividedBy(TimeSeries ts) {
         TimeSeries myRet = new TimeSeries();
-        for (Map.Entry<Integer, Double> i: this.entrySet()){
-            if (!ts.containsKey(i.getKey())){
+        for (Map.Entry<Integer, Double> i: this.entrySet()) {
+            if (!ts.containsKey(i.getKey())) {
                 throw new IllegalArgumentException();
-            }
-            else{
-                myRet.put(i.getKey(), i.getValue()/ts.get(i.getKey()));
+            } else {
+                myRet.put(i.getKey(), i.getValue() / ts.get(i.getKey()));
             }
         }
         return myRet;
     }
-
-    // TODO: Add any private helper methods.
-    // TODO: Remove all TODO comments before submitting.
 }
