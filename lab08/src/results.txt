@@ -1,0 +1,32 @@
+For InsertRandomSpeedTest, I set L to 10. For 100 strings, took 0.00 sec. For 10000 strings, .02 sec. For 1000000 strings, .51 sec.
+
+For InsertInOrderSpeedTest, 10 strings took 0.00 sec. 100 strings took 0.00 sec. 10000 strings took 1.22 sec.
+
+BSTMap/TreeMaps are better for ordered lists or data than HashMaps.
+
+For BucketsSpeedTest, it's shown:
+
+What would you like L to be?: 10
+
+Enter # strings to insert into each map: 100
+MyHashMap with ArrayList buckets: 0.00 sec
+MyHashMap with LinkedList buckets: 0.00 sec
+MyHashMap with HashSet buckets: 0.00 sec
+MyHashMap with Stack buckets: 0.00 sec
+MyHashMap with ArrayDeque buckets: 0.00 sec
+
+Enter # strings to insert into each map: 10000
+MyHashMap with ArrayList buckets: 0.04 sec
+MyHashMap with LinkedList buckets: 0.03 sec
+MyHashMap with HashSet buckets: 0.03 sec
+MyHashMap with Stack buckets: 0.02 sec
+MyHashMap with ArrayDeque buckets: 0.03 sec
+
+Enter # strings to insert into each map: 1000000
+MyHashMap with ArrayList buckets: 1.29 sec
+MyHashMap with LinkedList buckets: 1.60 sec
+MyHashMap with HashSet buckets: 1.78 sec
+MyHashMap with Stack buckets: 1.43 sec
+MyHashMap with ArrayDeque buckets: 1.66 sec
+
+Hash tables would speed up asymptotically because of the constant time.
