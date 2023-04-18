@@ -57,8 +57,11 @@ public class MemoryGame {
     }
 
     public String generateRandomString(int n) {
-        //TODO: Generate random string of letters of length n
-        return null;
+        String newString = "";
+        for (int i = 0; i < n; i++) {
+            newString += CHARACTERS[rand.nextInt(26)];
+        }
+        return newString;
     }
 
     public void drawFrame(String s) {
@@ -89,25 +92,42 @@ public class MemoryGame {
     }
 
     public void flashSequence(String letters) {
-        //TODO: Display each character in letters, making sure to blank the screen between letters
+        for (int i = 0; i < letters.length(); i++) {
+            StdDraw.pause(500);
+            drawFrame(String.valueOf(letters.charAt(i)));
+            StdDraw.pause(1000);
+            drawFrame("");
+        }
     }
 
     public String solicitNCharsInput(int n) {
-        //TODO: Read n letters of player input
-        return null;
+        String ret = "";
+        while (ret.length() < n) {
+            if (StdDraw.hasNextKeyTyped()) {
+                String adder = Character.toString(StdDraw.nextKeyTyped());
+                ret = ret + adder;
+                drawFrame(ret);
+            }
+        }
+        return ret;
     }
 
     public void startGame() {
-        //TODO: Set any relevant variables before the game starts
+        this.round = 1;
         this.gameOver = false;
 
-        //TODO: Establish Engine loop
         while (!gameOver) {
-            drawFrame("You should implement this game!");
+            drawFrame("Round: " + round);
+            String rand = generateRandomString(round);
+            flashSequence(rand);
             StdDraw.pause(1000);
+            String input = solicitNCharsInput(round);
+            if (!input.equals(rand)) {
+                this.drawFrame("Game Over! You made it to round: " + round);
+                gameOver = true;
+            }
+            round ++;
         }
-
-        this.drawFrame("Game Over! You made it to round: " + this.round);
     }
 
 }
